@@ -1,0 +1,12 @@
+#useDynLib(fsn, .registration = TRUE)
+
+importFrom("Rfast", matrnorm, colsums, lmfit)
+
+importFrom("graphics", abline, lines, plot)
+importFrom("grDevices", "dev.new")
+importFrom("stats", pnorm, qnorm, lm, var)
+
+exportPattern("^[[:alpha:]]+")
+exportPattern("^[^\\.]")
+
+
