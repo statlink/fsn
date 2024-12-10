@@ -6,10 +6,10 @@ convergence.rate <- function(k = seq( 10, 5000, by = 10), R = 1000, alpha = 0.05
 
   for ( i in 1:length(k) ) {
     z <- abs( Rfast::matrnorm(k[i], R) )
-    mat <- Rfast::colsums(z)^2
+    mat <- Rfast::colsums(z)^2 / qn2
     a[i] <- mean(mat)
   }
-  a <- a/ qn2
+
   #for ( i in 1:length(k) ) {
   #  for (j in 1:R) {
   #    z <- abs( Rfast::Rnorm(k[i]) )
@@ -17,7 +17,9 @@ convergence.rate <- function(k = seq( 10, 5000, by = 10), R = 1000, alpha = 0.05
   #  }
   #  a[i] <- mean(mat)
   #}
+
   e <- k * (2 * k + pi -2) / ( pi * qn2 )
+
   y1 <- as.vector( abs(e - a) / a )
   k1 <- as.vector(k)
   plot(k1, y1, type = 'l', ylab = 'Absolute relative error',
